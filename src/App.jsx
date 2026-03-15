@@ -1,16 +1,22 @@
 
+import { Suspense } from 'react'
 import './App.css'
-import Countries from './countries/country'
+import Countries from './components/countries/countries'
+
+
+const countriesPromise = fetch('https://openapi.programming-hero.com/api/all')
+.then(res => res.json())
 
 function App() {
-  
 
   return (
     <>
     
     <h1>country on the go projects</h1>
     
-    <Countries></Countries>
+    <Suspense fallback={<p>Nadir Vai Loading...</p>}>
+      <Countries countriesPromise = {countriesPromise}></Countries>
+    </Suspense>
 
      
     </>
